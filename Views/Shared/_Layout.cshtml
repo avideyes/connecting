@@ -1,0 +1,263 @@
+﻿
+<!--Header and Navigation and Search Bar Starting Line-->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connect to help</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="~/Content/bootstrap-3.1.1.min.css" rel="stylesheet" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href='//fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
+    <!--font-Awesome-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!--font-Awesome-->
+
+    <link href="~/Content/toggle_navbar.css" rel="stylesheet" />
+    <script src="~/Scripts/search_box_expanding.js"></script>
+    <link href="~/Content/search_box_expanding.css" rel="stylesheet" />
+
+
+    <!--ChatBox Links-->
+    <link href="~/Content/jquery.ui.chatbox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" media="screen" />
+    <script src="~/Scripts/jquery.ui.chatbox.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script src="~/Scripts/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        /*
+			document ready.
+		*/
+        $(document).ready(function () {
+            /*
+				declare gloabl box variable,
+				so we can check if box is alreay open,
+				when user click toggle button
+			*/
+            var box = null;
+
+            /*
+				we are now adding click hanlder for
+				toggle button.
+			*/
+
+            $("input[type='button']").click(function (event, ui) {
+                /*
+					now if box is not null,
+					we are toggling chat box.
+				*/
+                if (box) {
+                    /*
+						below code will hide the chatbox that
+						is active, when first clicked on toggle button
+					*/
+                    box.chatbox("option", "boxManager").toggleBox();
+                }
+                else {
+                    /*
+						if box variable is null then we will create
+						chat-box.
+					*/
+                    box = $("#chat_div").chatbox(
+					{
+					    /*
+							unique id for chat box
+						*/
+					    id: "Runnable",
+					    user:
+						{
+						    key: "value"
+						},
+					    /*
+							Title for the chat box
+						*/
+					    title: "Runnable User",
+					    /*
+							messageSend as name suggest,
+							this will called when message sent.
+							and for demo we have appended sent message to our log div.
+						*/
+					    messageSent: function (id, user, msg) {
+					        $("#log").append(id + " said: " + msg + "<br/>");
+					        $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
+					    }
+					});
+                }
+            });
+        });
+    </script>
+    <!--ChatBox Links-->
+
+
+</head>
+    <body>
+
+        <div class="container">
+            <div class="header fixed-header navbar-default navbar-fixed-top" role="navigation">
+
+                <ul class="nav nav-pills pull-left" style="margin-top:8px;">
+                    <li><a href="#" id="trigger"><span class="entypo-menu"></span></a></li>
+                </ul>
+
+                <a class="navbar-brand" href="/Home/Index">
+                    <img alt="Brand" src="~/Content/images/logo.png">
+                </a>
+
+                <!--user icon -->
+                <a href="/Home/login"><span class="glyphicon glyphicon-user navbar-brand navbar-right" aria-hidden="true" style="font-size:24px; color:white; float:right; margin: 15px 10px 0px 5px;"></span></a>
+                <!--user icon -->
+                <!--chat icon -->
+                <a href="/Home/signup"><span class="glyphicon glyphicon-envelope navbar-brand navbar-right" aria-hidden="true" style="font-size:24px; color:white; float:right; margin: 15px 10px 0px 5px;"></span></a>
+                <!--chat icon -->
+
+                <div class="navbar-brand navbar-right col-md-8">
+                    <form class="searchbox" action="/Home/after_search" method="post">
+                        <input type="search" placeholder="Search......" name="search" class="form-control searchbox-input" style="background-color:white; color:#f15f43;" onkeyup="buttonUp();" required>
+
+                        <a href="/Home/after_search"><button type="submit" value="GO" class="searchbox-submit" style="background-color:#f15f43;">GO</button></a>
+
+                        <a href="#"><span class="searchbox-icon"> <img src="~/Content/images/rings.svg" style="background-color:#f15f43;" width="55" alt="" /></span></a>
+                    </form>
+                </div>
+            </div>
+            <div class="sidebar closed">
+                <nav>
+                    <ul class="menu">
+
+                        <div style="margin-top:40px;"></div>
+                        <li><a href="/Home/Index">Home</a></li>
+                        <li><a href="/Home/similar_jobs">Jobs</a></li>
+                        <li><a href="/Home/similar_admissions">Education</a></li>
+                        <li><a href="/Home/services">Services</a></li>
+                        <li><a href="/Home/volunteers_page">Team</a></li>
+                        <li><a href="/Home/about">About</a></li>
+                        <li><a href="/Home/terms">Terms</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <filter id="blur">
+                <feGaussianBlur stdDeviation="10" />
+            </filter>
+            <filter id="blurLogo">
+                <feGaussianBlur stdDeviation="1" />
+            </filter>
+        </svg>
+        <script>
+            $(document).ready(function () {
+                // Toggle the blurred class
+                function sidebar() {
+                    var trigger = $('#trigger, #close'),
+                    menu = $('.sidebar');
+
+                    trigger.on('click', function () {
+                        $(this).toggleClass('active');
+                        menu.toggleClass('closed');
+                        $('#blurrMe').toggleClass('blurred'); // just here
+                    });
+                }
+
+
+
+
+                function deploy() {
+                    sidebar();
+                }
+
+                deploy();
+
+            });
+        </script>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-36251023-1']);
+            _gaq.push(['_setDomainName', 'jqueryscript.net']);
+            _gaq.push(['_trackPageview']);
+
+            (function () {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+        <div id="blurrMe">
+
+            <!--Header and Navigation and Search Bar Ending Line-->
+
+            @RenderBody()
+
+
+           
+
+
+            <!--Footer Starts Here-->
+            <div class="footer">
+                <div class="container">
+                    <div class="col-md-3 grid_3">
+                        <h4>Navigate</h4>
+                        <ul class="f_list f_list1">
+                            <li><a href="/Home/Index">Home</a></li>
+                            <li><a href="/Home/login">Sign In</a></li>
+                            <li><a href="/Home/signup">Join Now</a></li>
+                            <li><a href="/Home/about">About</a></li>
+                        </ul>
+                        <ul class="f_list">
+                            <li><a href="/Home/volunteers_page">Volunteers</a></li>
+                            <li><a href="/Home/terms">Terms of use</a></li>
+                            <li><a href="/Home/services">Services</a></li>
+                            <li><a href="/Home/upload_resume">Upload Resume</a></li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="col-md-3 grid_3">
+                        <h4>Twitter Widget</h4>
+                        <div class="footer-list">
+                            <ul>
+                                <li><i class="fa fa-twitter tw1"> </i><p><span class="yellow"><a href="#">consectetuer</a></span> adipiscing elit web design</p></li>
+                                <li><i class="fa fa-twitter tw1"> </i><p><span class="yellow"><a href="#">consectetuer</a></span> adipiscing elit web design</p></li>
+                                <li><i class="fa fa-twitter tw1"> </i><p><span class="yellow"><a href="#">consectetuer</a></span> adipiscing elit web design</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 grid_3">
+                        <h4>Connect 2 Help</h4>
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
+                    </div>
+                    <div class="col-md-3 grid_3">
+                        <h4>Sign up for our newsletter</h4>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam.</p>
+                        <form>
+                            <input type="text" class="form-control" placeholder="Enter your email">
+                            <button type="button" class="btn red">Subscribe now!</button>
+                        </form>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="footer_bottom">
+                <div class="container">
+                    <div class="copy">
+                        <p>Copyright © 2016 Connect to Help . All Rights Reserved .</p>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <!--Footer Ends Here-->
+
+        </div>
+    </body>
+</html>
+
