@@ -28,73 +28,17 @@
 
 
     <!--ChatBox Links-->
-    <link href="~/Content/jquery.ui.chatbox.css" rel="stylesheet" />
+    <!--jQuery UI CSS-->
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" media="screen" />
-    <script src="~/Scripts/jquery.ui.chatbox.js"></script>
-    <script src="~/Scripts/jquery-ui.js"></script>
-    <script src="~/Scripts/jquery-1.8.3.js"></script>
-    <script type="text/javascript">
-        /*
-			document ready.
-		*/
-        $(document).ready(function () {
-            /*
-				declare gloabl box variable,
-				so we can check if box is alreay open,
-				when user click toggle button
-			*/
-            var box = null;
+    <!--jQuery and jQuery UI with jQuery Chat-->
 
-            /*
-				we are now adding click hanlder for
-				toggle button.
-			*/
+    <script type="text/javascript" src="~/Scripts/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-ui.js"></script>
 
-            $("input[type='button']").click(function (event, ui) {
-                /*
-					now if box is not null,
-					we are toggling chat box.
-				*/
-                if (box) {
-                    /*
-						below code will hide the chatbox that
-						is active, when first clicked on toggle button
-					*/
-                    box.chatbox("option", "boxManager").toggleBox();
-                }
-                else {
-                    /*
-						if box variable is null then we will create
-						chat-box.
-					*/
-                    box = $("#chat_div").chatbox(
-					{
-					    /*
-							unique id for chat box
-						*/
-					    id: "Runnable",
-					    user:
-						{
-						    key: "value"
-						},
-					    /*
-							Title for the chat box
-						*/
-					    title: "Runnable User",
-					    /*
-							messageSend as name suggest,
-							this will called when message sent.
-							and for demo we have appended sent message to our log div.
-						*/
-					    messageSent: function (id, user, msg) {
-					        $("#log").append(id + " said: " + msg + "<br/>");
-					        $("#chat_div").chatbox("option", "boxManager").addMsg(id, msg);
-					    }
-					});
-                }
-            });
-        });
-    </script>
+
+    <link type="text/css" href="~/Content/jquery.ui.chatbox.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jquery.ui.chatbox.js"></script>
+    <script type="text/javascript" src="~/Scripts/chat.js"></script>
     <!--ChatBox Links-->
 
 
@@ -141,6 +85,7 @@
                         <li><a href="/Home/volunteers_page">Team</a></li>
                         <li><a href="/Home/about">About</a></li>
                         <li><a href="/Home/terms">Terms</a></li>
+                  
                     </ul>
                 </nav>
             </div>
@@ -194,7 +139,7 @@
 
         </script>
         <div id="blurrMe">
-
+            <div id="chat_div"></div>
             <!--Header and Navigation and Search Bar Ending Line-->
 
             @RenderBody()
@@ -242,6 +187,8 @@
                         <form>
                             <input type="text" class="form-control" placeholder="Enter your email">
                             <button type="button" class="btn red">Subscribe now!</button>
+                            <input type="button" class="btn red" name="toggle" value="live chat" />
+                            
                         </form>
                     </div>
                     <div class="clearfix"> </div>
